@@ -1,0 +1,6 @@
+{
+  "name": "FreeAppStore Developer Studio & Guide Explorer",
+  "description": "Interactive FreeAppStore platform workbench: full SDK interactive simulator, official template scaffolder, compliance tester, CLI runner, and complete developer reference.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
