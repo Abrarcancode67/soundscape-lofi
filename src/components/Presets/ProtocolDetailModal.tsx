@@ -144,13 +144,13 @@ export const ProtocolDetailModal: React.FC<ProtocolDetailModalProps> = ({
       aria-labelledby="dossier-modal-title"
     >
       <div 
-        className="relative w-full max-w-xl mx-auto my-0 max-h-[85vh] flex flex-col bg-[var(--paper-card)] border border-[var(--border)] rounded-2xl sm:rounded-3xl shadow-2xl ring-1 ring-white/10 overflow-hidden"
+        className="relative w-full max-w-xl mx-auto my-0 max-h-[85vh] flex flex-col bg-[var(--paper-card)] border border-[var(--line)] rounded-2xl sm:rounded-3xl shadow-2xl ring-1 ring-white/10 overflow-hidden"
         onClick={e => e.stopPropagation()}
       >
         {/* Header Bar (Sticky Top) */}
         <div className="sticky top-0 bg-slate-900/95 backdrop-blur z-10 p-4 border-b border-white/10 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 pr-2">
-            <span className="text-2xl sm:text-3xl p-1.5 sm:p-2 rounded-xl sm:rounded-2xl bg-[var(--paper-card)] border border-[var(--border)] shadow-xs shrink-0">
+            <span className="text-2xl sm:text-3xl p-1.5 sm:p-2 rounded-xl sm:rounded-2xl bg-[var(--paper-card)] border border-[var(--line)] shadow-xs shrink-0">
               {preset.icon}
             </span>
             <div className="min-w-0 truncate">
@@ -184,7 +184,7 @@ export const ProtocolDetailModal: React.FC<ProtocolDetailModalProps> = ({
         <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4 sm:space-y-5 text-xs text-[var(--ink)]">
           {/* Target Frequency & Neurotransmitter Matrix */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--border)] space-y-1">
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--line)] space-y-1">
               <span className="text-[10px] font-mono uppercase font-bold text-[var(--ink-muted)] flex items-center gap-1.5">
                 <Activity className="w-3.5 h-3.5 text-violet-400" />
                 <span>Target Brainwave Band</span>
@@ -197,7 +197,7 @@ export const ProtocolDetailModal: React.FC<ProtocolDetailModalProps> = ({
               </div>
             </div>
 
-            <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--border)] space-y-1">
+            <div className="p-3 sm:p-3.5 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--line)] space-y-1">
               <span className="text-[10px] font-mono uppercase font-bold text-[var(--ink-muted)] flex items-center gap-1.5">
                 <Heart className="w-3.5 h-3.5 text-rose-400" />
                 <span>Neurochemical Impact</span>
@@ -212,7 +212,7 @@ export const ProtocolDetailModal: React.FC<ProtocolDetailModalProps> = ({
           </div>
 
           {/* Biological Mechanism Section */}
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--border)] space-y-1.5 sm:space-y-2">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--line)] space-y-1.5 sm:space-y-2">
             <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[var(--accent)] flex items-center gap-1.5 font-mono">
               <Brain className="w-4 h-4" />
               <span>Biological Rationale & Mechanism</span>
@@ -223,7 +223,7 @@ export const ProtocolDetailModal: React.FC<ProtocolDetailModalProps> = ({
           </div>
 
           {/* Clinical & Real-world Outcome */}
-          <div className="p-3.5 sm:p-4 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--border)] space-y-1.5 sm:space-y-2">
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-[var(--paper-elevated)] border border-[var(--line)] space-y-1.5 sm:space-y-2">
             <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 font-mono">
               <ShieldCheck className="w-4 h-4" />
               <span>Cognitive & Wellness Outcome</span>
@@ -242,7 +242,7 @@ export const ProtocolDetailModal: React.FC<ProtocolDetailModalProps> = ({
               {channelEntries.map(([channelId, conf]) => (
                 <div 
                   key={channelId}
-                  className="p-2 sm:p-2.5 rounded-xl bg-[var(--paper-elevated)] border border-[var(--border)] flex items-center justify-between text-xs"
+                  className="p-2 sm:p-2.5 rounded-xl bg-[var(--paper-elevated)] border border-[var(--line)] flex items-center justify-between text-xs"
                 >
                   <span className="font-mono font-semibold capitalize text-slate-200 truncate pr-2">
                     {channelId.replace(/_/g, ' ')}
@@ -262,7 +262,7 @@ export const ProtocolDetailModal: React.FC<ProtocolDetailModalProps> = ({
         </div>
 
         {/* Footer Action */}
-        <div className="p-3.5 sm:p-4 border-t border-[var(--border)] bg-[var(--paper-elevated)] flex items-center justify-end gap-2.5 sm:gap-3 shrink-0">
+        <div className="p-3.5 sm:p-4 border-t border-[var(--line)] bg-[var(--paper-elevated)] flex items-center justify-end gap-2.5 sm:gap-3 shrink-0">
           <button
             onClick={onClose}
             className="px-3.5 sm:px-4 py-2 rounded-xl text-xs font-semibold text-[var(--ink-muted)] hover:text-white transition"

@@ -32,7 +32,7 @@ export const MasterControls: React.FC<MasterControlsProps> = ({
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 p-2.5 sm:p-3.5 bg-[var(--paper-card)] border border-[var(--border)] rounded-xl sm:rounded-2xl shadow-xs relative">
+    <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-4 p-2.5 sm:p-3.5 bg-[var(--paper-card)] border border-[var(--line)] rounded-xl sm:rounded-2xl shadow-xs relative">
       {/* Left: Play/Pause button + Active Sounds Pill */}
       <div className="flex items-center gap-2 sm:gap-3">
         <button

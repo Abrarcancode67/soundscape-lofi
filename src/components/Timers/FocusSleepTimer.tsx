@@ -4,12 +4,13 @@ import { TimerType } from '../../types/soundscape';
 import { Timer, Moon, Play, Pause, RotateCcw, Bell, Check, Sparkles } from 'lucide-react';
 
 interface FocusSleepTimerProps {
+  onTimerStart?: () => void;
   onTimerEnd?: () => void;
   accentColor?: string;
   isModal?: boolean;
 }
 
-export const FocusSleepTimer: React.FC<FocusSleepTimerProps> = ({ onTimerEnd, isModal = false }) => {
+export const FocusSleepTimer: React.FC<FocusSleepTimerProps> = ({ onTimerStart, onTimerEnd, isModal = false }) => {
   const [activeMode, setActiveMode] = useState<'pomodoro' | 'sleep'>('pomodoro');
   
   // Pomodoro state
@@ -75,6 +76,7 @@ export const FocusSleepTimer: React.FC<FocusSleepTimerProps> = ({ onTimerEnd, is
   const togglePomo = () => {
     if (!isPomoRunning) {
       soundScapeEngine.start();
+      if (onTimerStart) onTimerStart();
     }
     setIsPomoRunning(!isPomoRunning);
   };
@@ -86,6 +88,7 @@ export const FocusSleepTimer: React.FC<FocusSleepTimerProps> = ({ onTimerEnd, is
 
   const startSleep = (mins: number) => {
     soundScapeEngine.start();
+    if (onTimerStart) onTimerStart();
     setSleepMinutes(mins);
     setSleepSecondsLeft(mins * 60);
     setIsSleepRunning(true);
@@ -105,7 +108,7 @@ export const FocusSleepTimer: React.FC<FocusSleepTimerProps> = ({ onTimerEnd, is
   };
 
   return (
-    <div className={isModal ? "space-y-4" : "p-4 bg-[var(--paper-card)] border border-[var(--border)] rounded-2xl space-y-4 shadow-sm"}>
+    <div className={isModal ? "space-y-4" : "p-4 bg-[var(--paper-card)] border border-[var(--line)] rounded-2xl space-y-4 shadow-sm"}>
       {/* Mode Switcher */}
       <div className="flex bg-[var(--paper-elevated)] p-1 rounded-xl">
         <button
@@ -172,7 +175,7 @@ export const FocusSleepTimer: React.FC<FocusSleepTimerProps> = ({ onTimerEnd, is
           </div>
 
           {/* Interval Length Customizer */}
-          <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-[var(--border)] text-left">
+          <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-[var(--line)] text-left">
             <div>
               <span className="text-[10px] text-[var(--ink-muted)]">Work (mins)</span>
               <div className="flex gap-1 mt-1">

@@ -2,6 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var origDefineProperty = Object.defineProperty;
+          var customFetch = null;
+          var nativeFetch = (typeof window !== 'undefined' && window.fetch) ? window.fetch.bind(window) : null;
+          var currentGetter = function() {
+            return nativeFetch;
+          };
+
+          try {
+            origDefineProperty.call(Object, window, 'fetch', {
+              get: function() {
+                return customFetch || currentGetter();
+              },
+              set: function(val) {
+                customFetch = val;
+              },
+              configurable: true,
+              enumerable: true
+            });
+          } catch (e1) {}
+
+          Object.defineProperty = function(obj, prop, descriptor) {
+            if ((obj === window || (typeof Window !== 'undefined' && obj === Window.prototype)) && prop === 'fetch') {
+              if (descriptor && descriptor.get) {
+                currentGetter = descriptor.get;
+                customFetch = null;
+              } else if (descriptor && descriptor.value) {
+                currentGetter = function() { return descriptor.value; };
+                customFetch = null;
+              }
+              return origDefineProperty.call(Object, obj, prop, {
+                get: function() {
+                  return customFetch || currentGetter();
+                },
+                set: function(val) {
+                  customFetch = val;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            }
+            return origDefineProperty.apply(Object, arguments);
+          };
+
+          if (typeof Reflect !== 'undefined' && Reflect.defineProperty) {
+            var origReflectDefineProperty = Reflect.defineProperty;
+            Reflect.defineProperty = function(target, propertyKey, attributes) {
+              if ((target === window || (typeof Window !== 'undefined' && target === Window.prototype)) && propertyKey === 'fetch') {
+                return Object.defineProperty(target, propertyKey, attributes);
+              }
+              return origReflectDefineProperty.apply(Reflect, arguments);
+            };
+          }
+        } catch (e) {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
     <title>SoundScape Lo-Fi — Ambient Focus & Noise Mixer</title>
     <meta name="description" content="Ultra-lightweight zero-dependency in-browser ambient soundboard and productivity focus tool using Web Audio API and HTML5 Canvas." />
@@ -23,6 +81,17 @@
   <body class="font-sans antialiased">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      try {
+        if ('serviceWorker' in navigator && (location.hostname === 'localhost' || location.hostname.includes('.run.app'))) {
+          navigator.serviceWorker.getRegistrations().then(function(regs) {
+            for (var i = 0; i < (regs || []).length; i++) {
+              regs[i].unregister().catch(function() {});
+            }
+          }).catch(function() {});
+        }
+      } catch (e) {}
+    </script>
   </body>
 </html>
 

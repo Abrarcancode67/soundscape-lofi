@@ -51,7 +51,9 @@ export class SoundScapeAudioEngine {
       this.ctx = new AudioCtxClass();
       
       this.masterGain = this.ctx.createGain();
-      this.masterGain.gain.setValueAtTime(this.masterVolume, this.ctx.currentTime);
+      // Initialize master gain to 0 if not running (or masterVolume if running and unmuted)
+      const initialGain = (this.isRunning && !this.isMuted) ? this.masterVolume : 0;
+      this.masterGain.gain.setValueAtTime(initialGain, this.ctx.currentTime);
 
       this.analyser = this.ctx.createAnalyser();
       this.analyser.fftSize = 256;
@@ -65,7 +67,6 @@ export class SoundScapeAudioEngine {
       await this.ctx.resume();
     }
 
-    this.isRunning = true;
     return true;
   }
 
@@ -98,7 +99,8 @@ export class SoundScapeAudioEngine {
     this.masterVolume = Math.max(0, Math.min(1, vol));
     if (this.masterGain && this.ctx) {
       const now = this.ctx.currentTime;
-      const target = this.isMuted ? 0 : this.masterVolume;
+      // If paused or muted, master gain MUST stay at 0
+      const target = (!this.isRunning || this.isMuted) ? 0 : this.masterVolume;
       if (smooth) {
         this.masterGain.gain.cancelScheduledValues(now);
         this.masterGain.gain.linearRampToValueAtTime(target, now + 0.05);
@@ -130,8 +132,8 @@ export class SoundScapeAudioEngine {
   }
 
   public async start() {
-    await this.initAudioContext();
     this.isRunning = true;
+    await this.initAudioContext();
     if (this.masterGain && this.ctx) {
       const now = this.ctx.currentTime;
       this.masterGain.gain.cancelScheduledValues(now);

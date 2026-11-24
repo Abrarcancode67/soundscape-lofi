@@ -504,9 +504,9 @@ export default function App() {
   }, [channels]);
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-[var(--paper)] text-[var(--ink)] font-sans select-none overflow-x-hidden relative text-[13px] sm:text-sm">
+    <div className="w-full min-h-[100svh] flex flex-col bg-[var(--paper)] text-[var(--ink)] font-sans overflow-x-hidden relative text-[13px] sm:text-sm">
       {/* 1. Header (Natural Document Flow, non-sticky) */}
-      <header className="h-12 sm:h-14 px-2.5 sm:px-6 border-b border-[var(--border)] bg-[var(--paper-card)] flex items-center justify-between shrink-0 relative z-10 gap-2">
+      <header className="h-12 sm:h-14 px-2.5 sm:px-6 border-b border-[var(--line)] bg-[var(--paper-card)] flex items-center justify-between shrink-0 relative z-10 gap-2">
         {/* Zone 1: Wordmark */}
         <div className="flex items-center gap-2 shrink-0">
           <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-[var(--accent)] text-slate-950 flex items-center justify-center font-bold shadow-xs">
@@ -556,7 +556,7 @@ export default function App() {
         {/* Zone 3: Primary Controls */}
         <div className="flex items-center gap-1 sm:gap-2">
           {/* Dynamic Zoom Toggle (Accessibility & Mobile Scale) */}
-          <div className="flex items-center bg-[var(--paper-elevated)] p-0.5 rounded-lg border border-[var(--border)] text-[10px] sm:text-[11px] font-mono shrink-0">
+          <div className="flex items-center bg-[var(--paper-elevated)] p-0.5 rounded-lg border border-[var(--line)] text-[10px] sm:text-[11px] font-mono shrink-0">
             <span className="hidden md:inline px-1.5 text-[10px] text-[var(--ink-muted)] font-semibold select-none">
               Zoom:
             </span>
@@ -571,7 +571,7 @@ export default function App() {
             >
               75%
             </button>
-            <span className="text-[var(--border)] select-none">|</span>
+            <span className="text-[var(--line)] select-none">|</span>
             <button
               onClick={() => handleSetZoom(1.0)}
               className={`px-1.5 py-0.5 rounded transition ${
@@ -583,7 +583,7 @@ export default function App() {
             >
               100%
             </button>
-            <span className="text-[var(--border)] select-none">|</span>
+            <span className="text-[var(--line)] select-none">|</span>
             <button
               onClick={() => handleSetZoom(1.25)}
               className={`px-1.5 py-0.5 rounded transition ${
@@ -606,7 +606,7 @@ export default function App() {
               className={`flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-semibold transition border ${
                 showTimerModal
                   ? 'bg-[var(--accent)] text-slate-950 border-[var(--accent)] shadow-xs'
-                  : 'bg-[var(--paper-elevated)] border-[var(--border)] text-[var(--ink)] hover:border-slate-500'
+                  : 'bg-[var(--paper-elevated)] border-[var(--line)] text-[var(--ink)] hover:border-slate-500'
               }`}
             >
               <Timer className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
@@ -624,7 +624,7 @@ export default function App() {
           <button
             onClick={handleResetMix}
             title="Reset all channel volumes to zero"
-            className="p-1 sm:p-1.5 rounded-lg bg-[var(--paper-elevated)] border border-[var(--border)] text-[var(--ink-muted)] hover:text-white transition"
+            className="p-1 sm:p-1.5 rounded-lg bg-[var(--paper-elevated)] border border-[var(--line)] text-[var(--ink-muted)] hover:text-white transition"
           >
             <RotateCcw className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </button>
@@ -632,7 +632,7 @@ export default function App() {
           {/* Dark / Light Mode Toggle */}
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="p-1 sm:p-1.5 rounded-lg bg-[var(--paper-elevated)] border border-[var(--border)] text-[var(--ink-muted)] hover:text-white transition"
+            className="p-1 sm:p-1.5 rounded-lg bg-[var(--paper-elevated)] border border-[var(--line)] text-[var(--ink-muted)] hover:text-white transition"
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" /> : <Moon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
@@ -641,7 +641,7 @@ export default function App() {
       </header>
 
       {/* 2. Visualizer Ribbon (Anchored naturally in document flow without blocking canvas) */}
-      <div className="h-12 sm:h-16 w-full bg-[var(--paper)] border-b border-[var(--border)]/60 relative shrink-0 overflow-hidden">
+      <div className="h-12 sm:h-16 w-full bg-[var(--paper)] border-b border-[var(--line)]/60 relative shrink-0 overflow-hidden">
         <SoundVisualizer
           mode={visualizerMode}
           isPlaying={isPlaying}
@@ -685,7 +685,7 @@ export default function App() {
 
         {/* Channel Categories Filter Tabs */}
         <div className="flex flex-wrap items-center justify-between gap-2 pt-1 sm:pt-2">
-          <div className="flex items-center gap-1 bg-[var(--paper-card)] p-1 rounded-xl border border-[var(--border)] overflow-x-auto scrollbar-none max-w-full">
+          <div className="flex items-center gap-1 bg-[var(--paper-card)] p-1 rounded-xl border border-[var(--line)] overflow-x-auto scrollbar-none max-w-full">
             <button
               onClick={() => setSelectedCategory('all')}
               className={`px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-[11px] sm:text-xs font-bold transition whitespace-nowrap flex items-center gap-1.5 ${
@@ -777,14 +777,14 @@ export default function App() {
           aria-labelledby="timer-modal-title"
         >
           <div 
-            className="relative w-full max-w-md mx-auto my-0 max-h-[90vh] overflow-y-auto bg-[var(--paper-card)] border border-[var(--border)] rounded-2xl shadow-2xl p-4 sm:p-5 space-y-4 text-[var(--ink)] focus:outline-hidden"
+            className="relative w-full max-w-md mx-auto my-0 max-h-[90vh] overflow-y-auto bg-[var(--paper-card)] border border-[var(--line)] rounded-2xl shadow-2xl p-4 sm:p-5 space-y-4 text-[var(--ink)] focus:outline-hidden"
             onClick={(e) => e.stopPropagation()}
             tabIndex={-1}
           >
             {/* Top decorative gradient bar */}
             <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent rounded-t-2xl" />
 
-            <div className="flex items-center justify-between pb-2.5 border-b border-[var(--border)]">
+            <div className="flex items-center justify-between pb-2.5 border-b border-[var(--line)]">
               <span id="timer-modal-title" className="font-bold text-sm text-[var(--ink)] flex items-center gap-2">
                 <span className="p-1.5 rounded-lg bg-[var(--accent)]/15 text-[var(--accent)]">
                   <Timer className="w-4 h-4" />
@@ -801,6 +801,7 @@ export default function App() {
             </div>
 
             <FocusSleepTimer
+              onTimerStart={() => setIsPlaying(true)}
               onTimerEnd={() => setIsPlaying(false)}
               accentColor={theme === 'dark' ? '#38bdf8' : '#0284c7'}
               isModal
@@ -811,7 +812,7 @@ export default function App() {
       )}
 
       {/* 5. Minimalist FreeAppStore Compliant Footer (Document Flow) */}
-      <footer className="h-9 sm:h-10 px-3 sm:px-6 border-t border-[var(--border)] bg-[var(--paper-card)] flex items-center justify-between text-[10px] sm:text-[11px] text-[var(--ink-muted)] shrink-0 font-mono mt-auto relative z-10 gap-2">
+      <footer className="h-9 sm:h-10 px-3 sm:px-6 border-t border-[var(--line)] bg-[var(--paper-card)] flex items-center justify-between text-[10px] sm:text-[11px] text-[var(--ink-muted)] shrink-0 font-mono mt-auto relative z-10 gap-2">
         <div className="flex items-center gap-1.5 sm:gap-2 truncate">
           <span>SoundScape Lo-Fi ({channels.length} Channels)</span>
           <span className="hidden sm:inline">·</span>

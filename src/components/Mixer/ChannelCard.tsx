@@ -144,7 +144,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
           ? 'bg-amber-950/40 border-yellow-400 ring-2 ring-yellow-400/80 shadow-2xl shadow-yellow-500/40'
           : isAudible
           ? 'bg-[var(--paper-card)] border-[var(--accent)] ring-1 ring-[var(--accent)]/30 shadow-md is-active-card'
-          : 'bg-[var(--paper-card)] border-[var(--border)] opacity-90 hover:opacity-100 hover:border-slate-500'
+          : 'bg-[var(--paper-card)] border-[var(--line)] opacity-90 hover:opacity-100 hover:border-slate-500'
       }`}
     >
       {/* Top Row: Icon + Title + Mute/Solo */}
@@ -187,7 +187,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
               className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg text-[10px] sm:text-xs font-mono font-bold transition flex items-center justify-center ${
                 channel.solo
                   ? 'bg-amber-400 text-slate-950 font-extrabold shadow-sm'
-                  : 'bg-[var(--paper-elevated)] text-[var(--ink-muted)] hover:text-white border border-[var(--border)]'
+                  : 'bg-[var(--paper-elevated)] text-[var(--ink-muted)] hover:text-white border border-[var(--line)]'
               }`}
             >
               S
@@ -198,7 +198,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
               className={`w-6 h-6 sm:w-7 sm:h-7 rounded-md sm:rounded-lg transition flex items-center justify-center ${
                 channel.muted
                   ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
-                  : 'bg-[var(--paper-elevated)] text-[var(--ink-muted)] hover:text-white border border-[var(--border)]'
+                  : 'bg-[var(--paper-elevated)] text-[var(--ink-muted)] hover:text-white border border-[var(--line)]'
               }`}
             >
               {channel.muted ? <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
@@ -253,7 +253,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
 
       {/* 1. Thunder Strike Trigger & Acoustic Controls */}
       {channel.id === 'thunder' && (
-        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--border)] space-y-1.5 sm:space-y-2">
+        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--line)] space-y-1.5 sm:space-y-2">
           {/* Mode Selector */}
           <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono">
             <span className="text-[var(--ink-muted)]">Strike Mode</span>
@@ -272,7 +272,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
                 className={`py-0.5 sm:py-1 px-1 rounded-md sm:rounded-lg border text-center transition ${
                   thunderMode === mode
                     ? 'bg-yellow-400/20 border-yellow-400 text-yellow-300 font-bold'
-                    : 'bg-[var(--paper-elevated)] border-[var(--border)] text-[var(--ink-muted)] hover:text-slate-200'
+                    : 'bg-[var(--paper-elevated)] border-[var(--line)] text-[var(--ink-muted)] hover:text-slate-200'
                 }`}
               >
                 {mode === 'direct' ? '⚡ Direct' : mode === 'distant' ? '🏔️ Rolling' : '🌫️ Horizon'}
@@ -306,7 +306,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
 
       {/* 2. Binaural Beats Specific Controls Toggle */}
       {channel.id === 'binaural' && (
-        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--border)]">
+        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--line)]">
           <button
             onClick={() => setShowOptions(!showOptions)}
             className="w-full flex items-center justify-between text-[11px] sm:text-xs text-[var(--accent)] font-bold hover:underline"
@@ -316,7 +316,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
           </button>
 
           {showOptions && (
-            <div className="mt-2 space-y-2 p-2 bg-[var(--paper-elevated)] rounded-xl text-[11px] sm:text-xs border border-[var(--border)]">
+            <div className="mt-2 space-y-2 p-2 bg-[var(--paper-elevated)] rounded-xl text-[11px] sm:text-xs border border-[var(--line)]">
               <div className="text-[10px] text-[var(--ink-muted)] font-mono font-semibold">Brainwave Entrainment</div>
               <div className="grid grid-cols-4 gap-1">
                 {[
@@ -380,7 +380,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
 
       {/* 3. Solfeggio 528Hz Controls Toggle */}
       {channel.id === 'solfeggio_528' && (
-        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--border)]">
+        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--line)]">
           <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[var(--ink-muted)] mb-1">
             <span>Solfeggio Tone:</span>
             <span className="text-emerald-400 font-bold">{channel.customOptions?.solfeggioFreq || 528}Hz</span>
@@ -407,7 +407,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
 
       {/* 4. Gamma Pulse 40Hz Controls */}
       {channel.id === 'gamma_pulse' && (
-        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--border)]">
+        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--line)]">
           <div className="flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[var(--ink-muted)] mb-1">
             <span>Gamma Rate:</span>
             <span className="text-violet-400 font-bold">{channel.customOptions?.gammaPulseRate || 40}Hz</span>
@@ -434,7 +434,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
 
       {/* 5. Delta Sleep Sync 1.8Hz Controls */}
       {channel.id === 'delta_sleep' && (
-        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--border)] text-[10px] sm:text-[11px] font-mono space-y-1">
+        <div className="mt-2 pt-1.5 sm:mt-3.5 sm:pt-2.5 border-t border-[var(--line)] text-[10px] sm:text-[11px] font-mono space-y-1">
           <div className="flex items-center justify-between text-indigo-300 font-semibold">
             <span className="flex items-center gap-1">
               <Moon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-indigo-400" />
@@ -444,7 +444,7 @@ export const ChannelCard: React.FC<ChannelCardProps> = ({
               Stage 3 NREM
             </span>
           </div>
-          <div className="text-[9px] sm:text-[10px] text-[var(--ink-muted)] flex justify-between bg-[var(--paper-elevated)] p-1 sm:p-1.5 rounded-lg border border-[var(--border)]/60">
+          <div className="text-[9px] sm:text-[10px] text-[var(--ink-muted)] flex justify-between bg-[var(--paper-elevated)] p-1 sm:p-1.5 rounded-lg border border-[var(--line)]/60">
             <span>L: 108.0 Hz</span>
             <span>Δ 1.8 Hz</span>
             <span>R: 109.8 Hz</span>
